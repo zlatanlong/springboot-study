@@ -2,5 +2,11 @@ spring:
   datasource:
     username: root
     password: lcl123
-    url: jdbc:mysql://localhost:3306/mybatis?useSSl=false&serverTimeZone=UTC&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT%2B8&useSSl=false&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
+logging:
+  level:
+    root: warn
+    cn.lcl.dao: trace
+  pattern:
+    console: '%p%m%n'
