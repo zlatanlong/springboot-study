@@ -1,5 +1,7 @@
 package cn.lcl.entity;
 
+import com.baomidou.mybatisplus.annotation.SqlCondition;
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,8 +12,10 @@ public class User {
 
     private Long id;
 
+    @TableField(condition = SqlCondition.LIKE)
     private String name;
 
+    @TableField(condition = "%s&lt;#{%s}")
     private Integer age;
 
     private String email;
