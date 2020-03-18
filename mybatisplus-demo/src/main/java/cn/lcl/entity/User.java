@@ -24,4 +24,7 @@ public class User {
 
     private LocalDateTime createTime;
 
+    @TableField(select = false)
+    private Integer deleted;
+
 }

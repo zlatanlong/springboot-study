@@ -30,7 +30,7 @@ public class SimpleTest {
 
     @Test
     void select() {
-        List<User> list = userMapper.selectList(null);
+        List<Map<String,Object>> list = userMapper.selectMaps(null);
 
 //        Assert.assertEquals(5,list.size());
 
