@@ -1,5 +1,6 @@
 package cn.lcl.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.SqlCondition;
 import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
@@ -22,7 +23,11 @@ public class User {
 
     private Long managerId;
 
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
+
+    @TableField(fill = FieldFill.UPDATE)
+    private LocalDateTime updateTime;
 
     @TableField(select = false)
     private Integer deleted;

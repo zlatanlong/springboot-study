@@ -22,7 +22,7 @@ public class UpdateTest {
         User user = new User();
         user.setAge(27);
         user.setEmail("wangtianff@qq.com");
-        user.setId(1088248166370832385L);
+        user.setId(1240174663691149313L);
 
         int rows = userMapper.updateById(user);
 
@@ -99,7 +99,7 @@ public class UpdateTest {
     @Test
     public void updateByWrapperLambdaChain() {
 
-        boolean b = new LambdaUpdateChainWrapper<User>(userMapper)
+        boolean b = new LambdaUpdateChainWrapper<>(userMapper)
                 .eq(User::getName, "李艺伟")
                 .eq(User::getAge, 31)
                 .set(User::getAge, 32)
