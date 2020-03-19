@@ -32,4 +32,8 @@ public class User {
     @TableField(select = false)
     private Integer deleted;
 
+    private Integer teacherId;
+
+    private Teacher teacher; //冗余
+
 }

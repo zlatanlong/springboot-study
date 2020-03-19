@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lcl.dao.UserMapper">
+    <select id="selectAll" resultType="cn.lcl.entity.User">
+        select *
+        from mybatis.user ${ew.customSqlSegment}
+    </select>
+    <select id="selectUserPage" resultType="cn.lcl.entity.User">
+        select *
+        from mybatis.user ${ew.customSqlSegment}
+    </select>
+    <select id="selectOAById" resultType="cn.lcl.ov.UserTeacher">
+        select u.*, t.name teacher_name, t.age teacherAge
+        from mybatis.user u
+                 join mybatis.teacher t
+                      on u.teacher_id = t.id
+        where teacher_id = #{id}
+    </select>
+
+    <select id="selectMapById" resultType="java.util.Map">
+        select u.*, t.name teacher_name, t.age teacherAge
+        from mybatis.user u
+                 join mybatis.teacher t
+                      on u.teacher_id = t.id
+        where teacher_id = #{id}
+    </select>
+
+    <resultMap id="UserMap" type="cn.lcl.entity.User">
+        <id property="id" column="uid"/>
+        <result property="email" column="email"/>
+        <result property="age" column="age"/>
+        <result property="name" column="name"/>
+        <result property="createTime" column="create_time"/>
+        <association property="teacher" javaType="cn.lcl.entity.Teacher">
+            <id property="id" column="id"/>
+            <result property="name" column="teacher_name"/>
+        </association>
+    </resultMap>
+
+
+    <select id="selectMapById2" resultMap="UserMap">
+        select u.*, t.name teacher_name, t.age teacherAge
+        from mybatis.user u
+                 join mybatis.teacher t
+                      on u.teacher_id = t.id
+        where teacher_id = #{id}
+    </select>
+</mapper>
