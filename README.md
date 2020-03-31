@@ -10,4 +10,6 @@ spring boot从入门到。。
 
 ### 4.整合mybatis plus
 
+### 5.整合shrio
+
 ### 未完待续 ······
