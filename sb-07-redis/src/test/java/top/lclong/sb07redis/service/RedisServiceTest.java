@@ -7,6 +7,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import top.lclong.sb07redis.pojo.User;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -32,6 +35,8 @@ class RedisServiceTest {
 
     @Test
     public void testList() {
+        List<Integer> list = new ArrayList<>();
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
         redisTemplate.opsForList().leftPush("testlist", "h1");
         redisTemplate.opsForList().leftPush("testlist", "h2");
         redisTemplate.opsForList().leftPush("testlist", "h3");
