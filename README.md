@@ -1,6 +1,6 @@
 spring boot从入门到。。
 
-非多模块，每一个均为单模块
+已整合为多模块
 
 ### 1.Hello World
 

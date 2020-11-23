@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.lcl.mapper.EmployeeMapper">
+<mapper namespace="top.lclong.mapper.EmployeeMapper">
 
     <resultMap id="EmployeeMap" type="Employee">
         <id property="id" column="eid"/>
