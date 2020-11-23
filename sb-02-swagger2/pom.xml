@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>swagger2</artifactId>
-    <name>swagger2</name>
+    <name>sb-02-swagger2</name>
 
 
     <dependencies>

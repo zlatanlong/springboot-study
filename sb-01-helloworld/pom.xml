@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>springboot-01-helloworld</artifactId>
-    <name>springboot-01-helloworld</name>
+    <name>sb-01-helloworld</name>
 
     <properties>
         <java.version>1.8</java.version>

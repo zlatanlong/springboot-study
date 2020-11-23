@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>mybatis-springboot-demo</artifactId>
-    <name>mybatis-springboot-demo</name>
+    <name>sb-03-mybatis</name>
 
 
     <dependencies>

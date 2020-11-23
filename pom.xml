@@ -23,6 +23,7 @@
         <module>sb-05-shrio</module>
         <module>sb-06-websocket</module>
         <module>sb-07-redis</module>
+        <module>sb-08-security</module>
     </modules>
 
     <properties>

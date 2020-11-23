@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>mybatisplus-demo</artifactId>
-    <name>mybatisplus-demo</name>
+    <name>sb-04-mybatisplus</name>
 
 
     <dependencies>
