@@ -1,13 +1,17 @@
 package top.lclong.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import top.lclong.domain.Role;
 import top.lclong.domain.User;
 import top.lclong.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,8 +19,8 @@ import java.util.List;
  * @Date: 2020/11/23 21:00
  */
 @RequiredArgsConstructor
-@Service
-public class UserService implements UserDetailsService {
+@Service("userDetailsService")
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -26,7 +30,11 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("用户名不对");
         }
-        return user;
+        return new org.springframework.security.core.userdetails.User(
+                user.getName(),
+                user.getPassword(),
+                user.getAuthorities()
+        );
     }
 
     public User save(User user) {

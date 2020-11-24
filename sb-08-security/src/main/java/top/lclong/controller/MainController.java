@@ -21,7 +21,7 @@ public class MainController {
         return "index";
     }
 
-    @PreAuthorize("hasRole('USER')")
+//    @PreAuthorize("hasRole('USER')")
     @RequestMapping("/user/index")
     public String userIndex() {
         return "user/index";
