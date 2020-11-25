@@ -56,8 +56,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public MyAuthenticationFilter myAuthenticationFilter() throws Exception {
-        MyAuthenticationFilter myAuthenticationFilter = new MyAuthenticationFilter();
+        MyAuthenticationFilter myAuthenticationFilter = new MyAuthenticationFilter(tokenRepository);
         myAuthenticationFilter.setAuthenticationManager(authenticationManagerBean());
+        myAuthenticationFilter.setUserDetailsService(userDetailsServiceImpl);
         myAuthenticationFilter.setAuthenticationSuccessHandler((req, res, authentication) -> {
             res.setHeader("Content-Type", "application/json;charset:UTF-8");
             PrintWriter writer = res.getWriter();
