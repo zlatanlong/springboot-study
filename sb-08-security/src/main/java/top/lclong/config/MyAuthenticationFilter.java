@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,7 @@ public class MyAuthenticationFilter extends AbstractAuthenticationProcessingFilt
             result = mapper.readValue(request.getReader(), Map.class);
             String username = (String) result.get("username");
             String password = (String) result.get("password");
+            request.setAttribute(TokenBasedRememberMeServices.DEFAULT_PARAMETER, result.get(TokenBasedRememberMeServices.DEFAULT_PARAMETER));
             authRequest = new UsernamePasswordAuthenticationToken(username, password);
         } catch (IOException e) {
             System.out.println(e.getMessage());

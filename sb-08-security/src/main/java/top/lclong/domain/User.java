@@ -5,11 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.util.Assert;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @Author: zlatanlong
@@ -74,5 +75,13 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, phone, telephone, address, enabled, username, password, remark, roles, userface);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username +
+                '}';
     }
 }
