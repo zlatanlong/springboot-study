@@ -19,7 +19,7 @@ public class SwaggerConfig {
     @Value("${spring.profiles.active}")
     private String environment;
 
-    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.sblearning.swagger2";
+    public static final String SWAGGER_SCAN_BASE_PACKAGE = "top.lclong";
 
     Contact myContact = new Contact("", "", "");
 
@@ -45,7 +45,7 @@ public class SwaggerConfig {
      * @return
      */
     @Bean
-    public Docket docket() {
+    public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(myApiInfo())
                 // enable: 是否能访问swagger，可以通过flag使swagger只在生产环境下使用
