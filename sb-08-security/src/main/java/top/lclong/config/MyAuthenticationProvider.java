@@ -1,6 +1,7 @@
 package top.lclong.config;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -17,21 +18,27 @@ import top.lclong.repository.UserRepository;
  * @Date: 2020/11/24 15:46
  */
 @Component
-@RequiredArgsConstructor
+@Slf4j
 public class MyAuthenticationProvider implements AuthenticationProvider {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder encoder;
+
     @Autowired
-    PasswordEncoder encoder;
+    public MyAuthenticationProvider(UserRepository userRepository, PasswordEncoder encoder) {
+        this.userRepository = userRepository;
+        this.encoder = encoder;
+    }
 
     /**
-     * 核心认证模块，验证用户密码等各种复杂的轮机
+     * 核心认证模块，验证用户密码等各种复杂的逻辑
      * @param authentication
      * @return
      * @throws AuthenticationException
      */
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+        log.info("--authenticate--");
         String username = authentication.getName();
         String password = (String) authentication.getCredentials();
 
@@ -42,8 +49,8 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
         org.springframework.security.core.userdetails.User authSuccessUser
                 = new org.springframework.security.core.userdetails.User(myTypeUser.getUsername(),
                 myTypeUser.getPassword(), myTypeUser.getAuthorities());
-        // 认证成功之后 传递一个人家的User类作为principal
-        // details是通过filter 穿过去的
+        // 认证成功之后 传递一个Security的User类作为principal
+        // details是通过filter 传过去的
         return new UsernamePasswordAuthenticationToken(authSuccessUser, authSuccessUser.getPassword(), authSuccessUser.getAuthorities());
     }
 

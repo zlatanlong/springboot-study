@@ -2,6 +2,7 @@ package top.lclong.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -12,6 +13,10 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -21,9 +26,16 @@ import java.util.Map;
  * @Author: zlatanlong
  * @Date: 2020/11/23 23:47
  */
+@Slf4j
 public class MyAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     private final PersistentTokenRepository tokenRepository;
+
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+        log.info("--doFilter--");
+        super.doFilter(req, res, chain);
+    }
 
     public MyAuthenticationFilter(PersistentTokenRepository repositoryConfig) {
         super(new AntPathRequestMatcher("/login", "POST"));
@@ -41,6 +53,7 @@ public class MyAuthenticationFilter extends AbstractAuthenticationProcessingFilt
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
+        log.info("--attemptAuthentication--");
         UsernamePasswordAuthenticationToken authRequest;
         ObjectMapper mapper = new ObjectMapper();
         Map result = null;

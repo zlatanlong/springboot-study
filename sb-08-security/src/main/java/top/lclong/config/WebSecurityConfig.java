@@ -2,6 +2,7 @@ package top.lclong.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,6 +27,7 @@ import java.io.PrintWriter;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
+@Slf4j
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsServiceImpl;
@@ -36,10 +38,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     PersistentTokenRepository tokenRepository;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder());
-    }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder());
+//    }
 
     @Bean
     GrantedAuthorityDefaults grantedAuthorityDefaults() {
@@ -54,12 +56,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
+    /**
+     * 登录成功失败都返回json格式
+     *
+     * @return
+     * @throws Exception
+     */
     @Bean
     public MyAuthenticationFilter myAuthenticationFilter() throws Exception {
         MyAuthenticationFilter myAuthenticationFilter = new MyAuthenticationFilter(tokenRepository);
         myAuthenticationFilter.setAuthenticationManager(authenticationManagerBean());
         myAuthenticationFilter.setUserDetailsService(userDetailsServiceImpl);
         myAuthenticationFilter.setAuthenticationSuccessHandler((req, res, authentication) -> {
+            log.info("--AuthenticationSuccessHandler--");
             res.setHeader("Content-Type", "application/json;charset:UTF-8");
             PrintWriter writer = res.getWriter();
             writer.write(new ObjectMapper().writeValueAsString(authentication));
@@ -78,8 +87,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.headers().frameOptions().disable();
-        http
+        http.headers().frameOptions().disable()
+                .and()
                 .csrf().disable()
                 // 自定义的拦截器，处理json形式登录
                 .addFilterBefore(myAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
@@ -91,7 +100,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // form的拦截器是自带的，处理的form-data形式登录
                 .formLogin()
                 .loginProcessingUrl("/doLogin")
+                // 使用form-data登录时成功与失败的回调。
                 .successHandler((req, res, authentication) -> {
+                    log.info("--http.successHandler--");
                     PrintWriter writer = res.getWriter();
                     writer.print("Login success!");
                     writer.flush();

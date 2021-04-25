@@ -1,6 +1,7 @@
 package top.lclong.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,13 +20,15 @@ import java.util.List;
  * @Date: 2020/11/23 21:00
  */
 @RequiredArgsConstructor
-@Service("userDetailsService")
+@Service("userDetailsService") //直接通过名字给到security manager
+@Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        log.info("--loadUserByUsername--");
         User user = userRepository.findByUsername(s);
         if (user == null) {
             throw new UsernameNotFoundException("用户名不对");

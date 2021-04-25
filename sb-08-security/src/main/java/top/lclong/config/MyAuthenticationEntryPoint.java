@@ -29,6 +29,7 @@ public class MyAuthenticationEntryPoint extends LoginUrlAuthenticationEntryPoint
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException == null ? "Unauthorized" : authException.getMessage());
     }
 }
+
 @Component
 class AppErrorAttribute extends DefaultErrorAttributes {
 
