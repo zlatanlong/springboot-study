@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="UserMapper">
+<mapper namespace="top.lclong.dao.UserMapper">
     <select id="selectAll" resultType="top.lclong.entity.User">
         select *
         from mybatis.user ${ew.customSqlSegment}
@@ -33,7 +33,7 @@
         <result property="age" column="age"/>
         <result property="name" column="name"/>
         <result property="createTime" column="create_time"/>
-        <association property="teacher" javaType="Teacher">
+        <association property="teacher" javaType="top.lclong.entity.Teacher">
             <id property="id" column="id"/>
             <result property="name" column="teacher_name"/>
         </association>
