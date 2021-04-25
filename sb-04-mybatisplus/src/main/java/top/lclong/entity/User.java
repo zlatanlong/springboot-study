@@ -25,14 +25,14 @@ public class User {
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @TableField(fill = FieldFill.UPDATE)
-    private LocalDateTime updateTime;
+//    @TableField(fill = FieldFill.UPDATE)
+//    private LocalDateTime updateTime;
 
-    @TableField(select = false)
-    private Integer deleted;
+//    @TableField(select = false)
+//    private Integer deleted;
 
-    private Integer teacherId;
+//    private Integer teacherId;
 
-    private Teacher teacher; //冗余
+//    private Teacher teacher; //冗余
 
 }
