@@ -1,11 +1,10 @@
-package top.lclong.jwt;
+package top.lclong.security.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,9 +32,12 @@ public class TokenProvider implements InitializingBean {
 
     private static final String AUTHORITIES_KEY = "auth";
 
-    @Autowired
-    private JWTProperties jwtProperties;
+    private final JWTProperties jwtProperties;
     private Key key;
+
+    public TokenProvider(JWTProperties jwtProperties) {
+        this.jwtProperties = jwtProperties;
+    }
 
     @Override
     public void afterPropertiesSet() throws Exception {

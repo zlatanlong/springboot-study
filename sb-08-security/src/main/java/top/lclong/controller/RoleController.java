@@ -4,10 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.lclong.domain.Role;
-import top.lclong.domain.User;
-import top.lclong.repository.RoleRepository;
-import top.lclong.repository.UserRepository;
+import top.lclong.security.entity.Role;
+import top.lclong.security.entity.User;
+import top.lclong.security.repository.RoleRepository;
+import top.lclong.security.repository.UserRepository;
 
 import java.util.LinkedList;
 import java.util.List;

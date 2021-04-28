@@ -1,8 +1,7 @@
-package top.lclong.repository;
+package top.lclong.security.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import top.lclong.domain.Role;
+import top.lclong.security.entity.Role;
 
 /**
  * @Author: zlatanlong

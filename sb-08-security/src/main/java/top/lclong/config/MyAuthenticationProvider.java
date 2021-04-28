@@ -1,6 +1,5 @@
 package top.lclong.config;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -10,8 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import top.lclong.domain.User;
-import top.lclong.repository.UserRepository;
+import top.lclong.security.entity.User;
+import top.lclong.security.repository.UserRepository;
 
 /**
  * @Author: zlatanlong

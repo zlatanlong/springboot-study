@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import top.lclong.domain.Role;
-import top.lclong.repository.RoleRepository;
+import top.lclong.security.entity.Role;
+import top.lclong.security.repository.RoleRepository;
 
 /**
  * @Author: zlatanlong

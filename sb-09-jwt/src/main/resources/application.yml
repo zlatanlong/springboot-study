@@ -1,5 +1,20 @@
 server:
   port: 8090
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/jwt?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    jpa:
+      properties:
+        hibernate:
+          hbm2ddl:
+            auto: update
+          dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+          format_sql: true
+      show-sql: false
+      open-in-view: true
 jwt:
   header: Authorization
   token-start-with: Bearer

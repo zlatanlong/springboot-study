@@ -2,17 +2,13 @@ package top.lclong.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import top.lclong.domain.Role;
-import top.lclong.domain.User;
-import top.lclong.repository.UserRepository;
+import top.lclong.security.entity.User;
+import top.lclong.security.repository.UserRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +16,7 @@ import java.util.List;
  * @Date: 2020/11/23 21:00
  */
 @RequiredArgsConstructor
-@Service("userDetailsService") //直接通过名字给到security manager
+@Service("userDetailsService2") //直接通过名字给到security manager
 @Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 

@@ -1,4 +1,4 @@
-package top.lclong.domain;
+package top.lclong.security.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

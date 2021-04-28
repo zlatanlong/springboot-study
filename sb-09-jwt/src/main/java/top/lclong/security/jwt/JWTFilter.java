@@ -1,7 +1,7 @@
-package top.lclong.jwt;
+package top.lclong.security.jwt;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
@@ -16,17 +16,26 @@ import java.io.IOException;
  * @Date: 2021/4/19 20:07
  */
 @Slf4j
+@RequiredArgsConstructor
 public class JWTFilter extends GenericFilter {
 
-    @Autowired
-    private JWTProperties jwtProperties;
-    @Autowired
-    private TokenProvider tokenProvider;
+    private final JWTProperties jwtProperties;
+    private final TokenProvider tokenProvider;
 
+    /**
+     * 从请求中获取到token
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        // 获得我们token对应开头的
         String token = resolveToken((HttpServletRequest) request);
         if (StringUtils.hasText(token) && tokenProvider.validateToken(token)) {
+//            如果成功获取了就保存在SecurityContextHolder中
             Authentication authentication = tokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             log.info("set Authentication to security context for '{}'", authentication.getName());
