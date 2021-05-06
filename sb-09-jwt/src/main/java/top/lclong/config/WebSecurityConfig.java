@@ -96,15 +96,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
+                // 放行的
                 .antMatchers("/api/authenticate").permitAll()
                 // .antMatchers("/api/register").permitAll()
                 // .antMatchers("/api/activate").permitAll()
                 // .antMatchers("/api/account/reset-password/init").permitAll()
-                // .antMatchers("/api/account/reset-password/finish").permitAll()
+                // .antMatchers("/api/account/reset-passwWebSecurityConfigurerAdapterord/finish").permitAll()
 
+                // 需要权限的
                 .antMatchers("/api/person").hasAuthority("ROLE_USER")
                 .antMatchers("/api/hiddenmessage").hasAuthority("ROLE_ADMIN")
-
+                // 需要认证的
                 .anyRequest().authenticated()
 
                 .and()

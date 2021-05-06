@@ -25,6 +25,7 @@
         <module>sb-07-redis</module>
         <module>sb-08-security</module>
         <module>sb-09-jwt</module>
+        <module>test</module>
     </modules>
 
     <properties>
