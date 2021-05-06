@@ -33,3 +33,5 @@ INSERT INTO jwt.authority (name) VALUES ('ROLE_USER');
 INSERT INTO jwt.authority (name) VALUES ('ROLE_ADMIN');
 
 INSERT INTO jwt.user_authority (user_id, authority_name) VALUES (1, 'ROLE_USER');
+INSERT INTO jwt.user_authority (user_id, authority_name) VALUES (1, 'ROLE_ADMIN');
+INSERT INTO jwt.user_authority (user_id, authority_name) VALUES (2, 'ROLE_USER');

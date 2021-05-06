@@ -16,6 +16,7 @@ import top.lclong.config.bean.JWTProperties;
 import top.lclong.security.JwtAccessDeniedHandler;
 import top.lclong.security.JwtAuthenticationEntryPoint;
 import top.lclong.security.jwt.JWTConfigurer;
+import top.lclong.security.jwt.JWTFilter;
 import top.lclong.security.jwt.TokenProvider;
 
 
@@ -110,7 +111,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
 
                 .and()
-                .apply(securityConfigurerAdapter());
+                .addFilterBefore(new JWTFilter(jwtProperties,tokenProvider), UsernamePasswordAuthenticationFilter.class);
+//                .apply(securityConfigurerAdapter());
     }
 
     private JWTConfigurer securityConfigurerAdapter() {

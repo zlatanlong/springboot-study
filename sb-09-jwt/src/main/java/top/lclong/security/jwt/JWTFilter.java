@@ -24,11 +24,9 @@ public class JWTFilter extends GenericFilter {
 
     /**
      * 从请求中获取到token
-     * @param request
-     * @param response
-     * @param chain
-     * @throws IOException
-     * @throws ServletException
+     * @param request httpRequest
+     * @param response httpResponse
+     * @param chain filterChain
      */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
