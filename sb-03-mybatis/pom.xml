@@ -7,7 +7,7 @@
         <artifactId>springboot-study</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>mybatis-springboot-demo</artifactId>
+    <artifactId>sb-03-mybatis</artifactId>
     <name>sb-03-mybatis</name>
 
 

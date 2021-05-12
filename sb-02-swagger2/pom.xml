@@ -7,7 +7,7 @@
         <artifactId>springboot-study</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>swagger2</artifactId>
+    <artifactId>sb-02-swagger2</artifactId>
     <name>sb-02-swagger2</name>
 
 

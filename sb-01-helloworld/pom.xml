@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>springboot-01-helloworld</artifactId>
+    <artifactId>sb-01-helloworld</artifactId>
     <name>sb-01-helloworld</name>
 
     <properties>
