@@ -1,0 +1,6 @@
+# syntax=docker/dockerfile:1
+
+FROM mysql:5.7.34
+
+#把sql文件复制到工作目录下
+COPY ./import.sql /docker-entrypoint-initdb.d

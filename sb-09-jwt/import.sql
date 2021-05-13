@@ -1,9 +1,13 @@
-create table jwt.authority
+CREATE DATABASE IF NOT EXISTS `jwt`;
+
+USE `jwt`;
+
+CREATE TABLE jwt.authority
 (
     name varchar(20) null
 )
     charset = utf8;
-create table jwt.user
+CREATE TABLE jwt.user
 (
     id        int auto_increment
         primary key,
@@ -15,7 +19,7 @@ create table jwt.user
     email     varchar(100) null
 )
     charset = utf8;
-create table jwt.user_authority
+CREATE TABLE jwt.user_authority
 (
     user_id        int         null,
     authority_name varchar(20) null
@@ -25,9 +29,9 @@ create table jwt.user_authority
 # Admin - admin:admin
 # User - user:password
 # Disabled - disabled:password (this user is deactivated)
-insert into jwt.user (id, username, password, firstname, lastname, email, activated) values (1, 'admin', '$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi', 'admin', 'admin', 'admin@admin.com', 1);
-insert into jwt.user (id, username, password, firstname, lastname, email, activated) values (2, 'user', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'user', 'user', 'enabled@user.com', 1);
-insert into jwt.user (id, username, password, firstname, lastname, email, activated) values (3, 'disabled', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'user', 'user', 'disabled@user.com', 0);
+INSERT INTO jwt.user (id, username, password, firstname, lastname, email, activated) VALUES (1, 'admin', '$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi', 'admin', 'admin', 'admin@admin.com', 1);
+INSERT INTO jwt.user (id, username, password, firstname, lastname, email, activated) VALUES (2, 'user', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'user', 'user', 'enabled@user.com', 1);
+INSERT INTO jwt.user (id, username, password, firstname, lastname, email, activated) VALUES (3, 'disabled', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'user', 'user', 'disabled@user.com', 0);
 
 INSERT INTO jwt.authority (name) VALUES ('ROLE_USER');
 INSERT INTO jwt.authority (name) VALUES ('ROLE_ADMIN');
