@@ -14,7 +14,7 @@ import java.util.Set;
  * @Author: zlatanlong
  * @Date: 2020/12/6 15:29
  */
-@Configuration
+//@Configuration
 public class RedisClusterConfig {
 
     @Value("${spring.redis.cluster.nodes}")

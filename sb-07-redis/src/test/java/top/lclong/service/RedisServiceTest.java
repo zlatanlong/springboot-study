@@ -6,14 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import redis.clients.jedis.JedisCluster;
 import top.lclong.pojo.User;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
 
 /**
  * @Author: zlatanlong
@@ -22,23 +15,23 @@ import java.util.Random;
 @SpringBootTest
 class RedisServiceTest {
 
-    @Autowired
-    private JedisCluster jedisCluster;
-    @Qualifier("redisTemplate")
-    @Autowired
-    private RedisTemplate redisTemplate;
+//    @Autowired
+//    private JedisCluster jedisCluster;
+@Qualifier("redisTemplate")
+@Autowired
+private RedisTemplate<Object, Object> redisTemplate;
 
 
     @Test
     public void test() {
 //        jedisCluster.set("userName", "zhangsan");
-        String userName = jedisCluster.get("m1");
-        System.out.println("userName======" + userName);
+//        String userName = jedisCluster.get("m1");
+//        System.out.println("userName======" + userName);
     }
 
     @Test
-    public void test2() {
-        Object m1 =  redisTemplate.opsForValue().get("m1");
+    public void getValue() {
+        Object m1 = redisTemplate.opsForValue().get("m1");
         if ((m1 instanceof String)) {
             System.out.println("123");
         }
@@ -47,14 +40,13 @@ class RedisServiceTest {
     }
 
     @Test
-    public void test3() {
+    public void saveOneObject() {
         User user = new User();
         user.setId(1);
         user.setUserName("zhangsn");
         user.setUserSex("nan");
-        ValueOperations<String,User> valueOperations = redisTemplate.opsForValue();
-        valueOperations.set("user", user);
-        System.out.println(valueOperations.get("user"));
+        redisTemplate.opsForValue().set("user", user);
+        System.out.println(redisTemplate.opsForValue().get("user"));
     }
     @Test
     public void test4() {

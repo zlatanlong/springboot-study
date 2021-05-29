@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="stomp.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    function mq() {
+        // Stomp.js boilerplate
+        const client = Stomp.client('ws://' + window.location.hostname + ':15674/ws');
+        client.debug = false
+        const on_connect = function () {
+            client.subscribe("/queue/TestDirectQueue", d => {
+                console.log(JSON.parse(d.body));
+            }, {'x-message-ttl': 30000});
+        };
+        const on_error = function () {
+            console.log('error');
+            window.setTimeout(() => {
+            }, 1000)
+        };
+        client.connect('guest', 'guest', on_connect, on_error, '/')
+
+        client.disconnect(function () {
+            alert("See you next time!");
+        })
+    }
+
+    mq()
+</script>
+</html>

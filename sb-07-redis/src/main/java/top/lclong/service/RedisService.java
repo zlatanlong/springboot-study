@@ -16,7 +16,7 @@ import java.util.Random;
 public class RedisService {
 
     @Autowired
-    private RedisTemplate<String, Serializable> redisTemplate;
+    private RedisTemplate<Object, Object> redisTemplate;
 
     public void saveUser() {
         final String KEY = "testobj";

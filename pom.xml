@@ -26,6 +26,7 @@
         <module>sb-08-security</module>
         <module>sb-09-jwt</module>
         <module>sb-10-docker</module>
+        <module>sb-11-rabbitmq</module>
     </modules>
 
     <properties>
