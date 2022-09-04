@@ -11,7 +11,7 @@
 <script>
     function mq() {
         // Stomp.js boilerplate
-        const client = Stomp.client('ws://' + window.location.hostname + ':15674/ws');
+        const client = Stomp.client('ws://localhost:15674/ws');
         client.debug = false
         const on_connect = function () {
             client.subscribe("/queue/TestDirectQueue", d => {

@@ -45,7 +45,12 @@ private RedisTemplate<Object, Object> redisTemplate;
         user.setId(1);
         user.setUserName("zhangsn");
         user.setUserSex("nan");
-        redisTemplate.opsForValue().set("user", user);
+        User user1 = new User();
+        user1.setId(2);
+        user1.setUserName("lsi");
+        user1.setUserSex("asdasdsadasd");
+        user.setUsers(user1);
+        redisTemplate.opsForValue().set("user:3", user);
         System.out.println(redisTemplate.opsForValue().get("user"));
     }
     @Test
